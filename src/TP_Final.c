@@ -10,23 +10,18 @@
 
 #ifdef __USE_CMSIS
 #include "LPC17xx.h"
+#include "control_motor.h"
 #endif
 
 #include <cr_section_macros.h>
 
-// TODO: insert other include files here
-
-// TODO: insert other definitions and declarations here
 
 int main(void) {
 
-    // TODO: insert code here
+	config_PWM();
+	arrancar_motor();
 
-    // Force the counter to be placed into memory
-    volatile static int i = 0 ;
-    // Enter an infinite loop, just incrementing a counter
-    while(1) {
-        i++ ;
-    }
+	while(1);
+
     return 0 ;
 }
