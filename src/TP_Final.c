@@ -19,7 +19,7 @@
 int main(void) {
 
 	config_PWM();
-	arrancar_motor();
+//	arrancar_motor();
 
 	while(1);
 

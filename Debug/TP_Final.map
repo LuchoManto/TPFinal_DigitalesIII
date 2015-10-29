@@ -37,6 +37,10 @@ Discarded input sections
  .text          0x00000000        0x0 ./src/control_motor.o
  .data          0x00000000        0x0 ./src/control_motor.o
  .bss           0x00000000        0x0 ./src/control_motor.o
+ .text.arrancar_motor
+                0x00000000       0x3c ./src/control_motor.o
+ .text.set_Pwm  0x00000000       0x28 ./src/control_motor.o
+ .text.delay    0x00000000       0x24 ./src/control_motor.o
  .debug_macro   0x00000000      0x87a ./src/control_motor.o
  .debug_macro   0x00000000       0x1c ./src/control_motor.o
  .debug_macro   0x00000000       0x2e ./src/control_motor.o
@@ -144,7 +148,7 @@ END GROUP
                 0x20084000                __top_RamAHB32 = 0x20084000
                 0x20084000                __top_RAM2 = 0x20084000
 
-.text           0x00000000      0x4e8
+.text           0x00000000      0x488
  FILL mask 0xff
                 0x00000000                __vectors_start__ = ABSOLUTE (.)
  *(.isr_vector)
@@ -153,10 +157,10 @@ END GROUP
                 0x000000cc                . = ALIGN (0x4)
                 0x000000cc                __section_table_start = .
                 0x000000cc                __data_section_table = .
-                0x000000cc        0x4 LONG 0x4e8 LOADADDR (.data)
+                0x000000cc        0x4 LONG 0x488 LOADADDR (.data)
                 0x000000d0        0x4 LONG 0x10000000 ADDR (.data)
                 0x000000d4        0x4 LONG 0x0 SIZEOF (.data)
-                0x000000d8        0x4 LONG 0x4e8 LOADADDR (.data_RAM2)
+                0x000000d8        0x4 LONG 0x488 LOADADDR (.data_RAM2)
                 0x000000dc        0x4 LONG 0x2007c000 ADDR (.data_RAM2)
                 0x000000e0        0x4 LONG 0x0 SIZEOF (.data_RAM2)
                 0x000000e4                __data_section_table_end = .
@@ -227,56 +231,49 @@ END GROUP
                 0x00000300                PROVIDE (__CRP_WORD_END__, .)
                 0x00000001                ASSERT (! ((__CRP_WORD_START__ == __CRP_WORD_END__)), Linker CRP Enabled, but no CRP_WORD provided within application)
  *(.text*)
- .text.main     0x00000300       0x10 ./src/TP_Final.o
+ .text.main     0x00000300        0xc ./src/TP_Final.o
                 0x00000300                main
  .text.config_PWM
-                0x00000310       0x78 ./src/control_motor.o
-                0x00000310                config_PWM
- .text.arrancar_motor
-                0x00000388       0x3c ./src/control_motor.o
-                0x00000388                arrancar_motor
- .text.set_Pwm  0x000003c4       0x1c ./src/control_motor.o
-                0x000003c4                set_Pwm
- .text.delay    0x000003e0       0x24 ./src/control_motor.o
-                0x000003e0                delay
+                0x0000030c       0x98 ./src/control_motor.o
+                0x0000030c                config_PWM
  .text.SystemInit
-                0x00000404       0xe0 F:\LUCHO\Facu\Cuartoo\ElectronicaDigital\Workspace\CMSISv2p00_LPC17xx\Debug\libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
-                0x00000404                SystemInit
+                0x000003a4       0xe0 F:\LUCHO\Facu\Cuartoo\ElectronicaDigital\Workspace\CMSISv2p00_LPC17xx\Debug\libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
+                0x000003a4                SystemInit
  .text.__weak_main
-                0x000004e4        0x4 c:/nxp/lpcxpresso_7.9.0_455/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libcr_c.a(__weak__main.o)
-                0x000004e4                __weak_main
-                0x000004e4                __main
+                0x00000484        0x4 c:/nxp/lpcxpresso_7.9.0_455/lpcxpresso/tools/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libcr_c.a(__weak__main.o)
+                0x00000484                __weak_main
+                0x00000484                __main
  *(.rodata .rodata.* .constdata .constdata.*)
-                0x000004e8                . = ALIGN (0x4)
+                0x00000488                . = ALIGN (0x4)
 
-.glue_7         0x000004e8        0x0
+.glue_7         0x00000488        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x000004e8        0x0
+.glue_7t        0x00000488        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x000004e8        0x0
+.vfp11_veneer   0x00000488        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x000004e8        0x0
+.v4_bx          0x00000488        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x000004e8        0x0
+.iplt           0x00000488        0x0
  .iplt          0x00000000        0x0 ./src/TP_Final.o
 
-.rel.dyn        0x000004e8        0x0
+.rel.dyn        0x00000488        0x0
  .rel.iplt      0x00000000        0x0 ./src/TP_Final.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x000004e8                __exidx_start = .
+                0x00000488                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x000004e8                __exidx_end = .
-                0x000004e8                _etext = .
+                0x00000488                __exidx_end = .
+                0x00000488                _etext = .
 
-.data_RAM2      0x2007c000        0x0 load address 0x000004e8
+.data_RAM2      0x2007c000        0x0 load address 0x00000488
  FILL mask 0xff
                 0x2007c000                PROVIDE (__start_data_RAM2, .)
  *(.ramfunc.$RAM2)
@@ -292,7 +289,7 @@ END GROUP
                 0x10000000                . = ALIGN (0x4)
                 0x10000000                _end_uninit_RESERVED = .
 
-.data           0x10000000        0x0 load address 0x000004e8
+.data           0x10000000        0x0 load address 0x00000488
  FILL mask 0xff
                 0x10000000                _data = .
  *(vtable)
@@ -301,7 +298,7 @@ END GROUP
                 0x10000000                . = ALIGN (0x4)
                 0x10000000                _edata = .
 
-.igot.plt       0x10000000        0x0 load address 0x000004e8
+.igot.plt       0x10000000        0x0 load address 0x00000488
  .igot.plt      0x00000000        0x0 ./src/TP_Final.o
 
 .bss_RAM2       0x2007c000        0x0
@@ -334,19 +331,19 @@ END GROUP
                 0xefff74b2                PROVIDE (__valid_user_code_checksum, (0x0 - ((((((_vStackTop + (ResetISR + 0x1)) + (NMI_Handler + 0x1)) + (HardFault_Handler + 0x1)) + (DEFINED (MemManage_Handler)?MemManage_Handler:0x0 + 0x1)) + (DEFINED (BusFault_Handler)?BusFault_Handler:0x0 + 0x1)) + (DEFINED (UsageFault_Handler)?UsageFault_Handler:0x0 + 0x1))))
 OUTPUT(TP_Final.axf elf32-littlearm)
 
-.debug_info     0x00000000      0xc56
+.debug_info     0x00000000      0xf1c
  .debug_info    0x00000000       0xa8 ./src/TP_Final.o
- .debug_info    0x000000a8      0x609 ./src/control_motor.o
- .debug_info    0x000006b1      0x24e ./src/cr_startup_lpc175x_6x.o
- .debug_info    0x000008ff       0x3f ./src/crp.o
- .debug_info    0x0000093e      0x318 F:\LUCHO\Facu\Cuartoo\ElectronicaDigital\Workspace\CMSISv2p00_LPC17xx\Debug\libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
+ .debug_info    0x000000a8      0x8cf ./src/control_motor.o
+ .debug_info    0x00000977      0x24e ./src/cr_startup_lpc175x_6x.o
+ .debug_info    0x00000bc5       0x3f ./src/crp.o
+ .debug_info    0x00000c04      0x318 F:\LUCHO\Facu\Cuartoo\ElectronicaDigital\Workspace\CMSISv2p00_LPC17xx\Debug\libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
 
-.debug_abbrev   0x00000000      0x3cf
+.debug_abbrev   0x00000000      0x3f9
  .debug_abbrev  0x00000000       0x6c ./src/TP_Final.o
- .debug_abbrev  0x0000006c      0x152 ./src/control_motor.o
- .debug_abbrev  0x000001be       0xf5 ./src/cr_startup_lpc175x_6x.o
- .debug_abbrev  0x000002b3       0x36 ./src/crp.o
- .debug_abbrev  0x000002e9       0xe6 F:\LUCHO\Facu\Cuartoo\ElectronicaDigital\Workspace\CMSISv2p00_LPC17xx\Debug\libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
+ .debug_abbrev  0x0000006c      0x17c ./src/control_motor.o
+ .debug_abbrev  0x000001e8       0xf5 ./src/cr_startup_lpc175x_6x.o
+ .debug_abbrev  0x000002dd       0x36 ./src/crp.o
+ .debug_abbrev  0x00000313       0xe6 F:\LUCHO\Facu\Cuartoo\ElectronicaDigital\Workspace\CMSISv2p00_LPC17xx\Debug\libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
 
 .debug_aranges  0x00000000      0x118
  .debug_aranges
@@ -385,23 +382,23 @@ OUTPUT(TP_Final.axf elf32-littlearm)
  .debug_macro   0x00001c3e      0x12b F:\LUCHO\Facu\Cuartoo\ElectronicaDigital\Workspace\CMSISv2p00_LPC17xx\Debug\libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
  .debug_macro   0x00001d69      0x874 F:\LUCHO\Facu\Cuartoo\ElectronicaDigital\Workspace\CMSISv2p00_LPC17xx\Debug\libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
 
-.debug_line     0x00000000      0x783
- .debug_line    0x00000000      0x20a ./src/TP_Final.o
- .debug_line    0x0000020a      0x256 ./src/control_motor.o
- .debug_line    0x00000460       0xd5 ./src/cr_startup_lpc175x_6x.o
- .debug_line    0x00000535       0x78 ./src/crp.o
- .debug_line    0x000005ad      0x1d6 F:\LUCHO\Facu\Cuartoo\ElectronicaDigital\Workspace\CMSISv2p00_LPC17xx\Debug\libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
+.debug_line     0x00000000      0x785
+ .debug_line    0x00000000      0x209 ./src/TP_Final.o
+ .debug_line    0x00000209      0x259 ./src/control_motor.o
+ .debug_line    0x00000462       0xd5 ./src/cr_startup_lpc175x_6x.o
+ .debug_line    0x00000537       0x78 ./src/crp.o
+ .debug_line    0x000005af      0x1d6 F:\LUCHO\Facu\Cuartoo\ElectronicaDigital\Workspace\CMSISv2p00_LPC17xx\Debug\libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
 
-.debug_str      0x00000000     0x8a37
+.debug_str      0x00000000     0x8b73
  .debug_str     0x00000000     0x80c9 ./src/TP_Final.o
                                0x814a (size before relaxing)
- .debug_str     0x000080c9      0x2b3 ./src/control_motor.o
-                               0x83e6 (size before relaxing)
- .debug_str     0x0000837c      0x1c2 ./src/cr_startup_lpc175x_6x.o
+ .debug_str     0x000080c9      0x3ef ./src/control_motor.o
+                               0x8522 (size before relaxing)
+ .debug_str     0x000084b8      0x1c2 ./src/cr_startup_lpc175x_6x.o
                                0x266a (size before relaxing)
- .debug_str     0x0000853e       0xe9 ./src/crp.o
+ .debug_str     0x0000867a       0xe9 ./src/crp.o
                                0x2582 (size before relaxing)
- .debug_str     0x00008627      0x410 F:\LUCHO\Facu\Cuartoo\ElectronicaDigital\Workspace\CMSISv2p00_LPC17xx\Debug\libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
+ .debug_str     0x00008763      0x410 F:\LUCHO\Facu\Cuartoo\ElectronicaDigital\Workspace\CMSISv2p00_LPC17xx\Debug\libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
                                0x80f7 (size before relaxing)
 
 .comment        0x00000000       0xe0
