@@ -9,7 +9,8 @@ C_SRCS += \
 ../src/control_velocidad.c \
 ../src/conversor.c \
 ../src/cr_startup_lpc175x_6x.c \
-../src/crp.c 
+../src/crp.c \
+../src/serial.c 
 
 OBJS += \
 ./src/TP_Final.o \
@@ -17,7 +18,8 @@ OBJS += \
 ./src/control_velocidad.o \
 ./src/conversor.o \
 ./src/cr_startup_lpc175x_6x.o \
-./src/crp.o 
+./src/crp.o \
+./src/serial.o 
 
 C_DEPS += \
 ./src/TP_Final.d \
@@ -25,7 +27,8 @@ C_DEPS += \
 ./src/control_velocidad.d \
 ./src/conversor.d \
 ./src/cr_startup_lpc175x_6x.d \
-./src/crp.d 
+./src/crp.d \
+./src/serial.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

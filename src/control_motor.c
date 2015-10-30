@@ -6,6 +6,7 @@
  */
 
 #include "headers.h"
+#include "control_motor.h"
 
 void config_PWM(void)
 {

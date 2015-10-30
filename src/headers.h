@@ -10,8 +10,9 @@
 
 #ifdef __USE_CMSIS
 #include "LPC17xx.h"
-#include "control_motor.h"
-#include "control_velocidad.h"
+
+#include <cr_section_macros.h>
+
 #endif
 
 

@@ -11,3 +11,11 @@
 
 
 #endif /* SERIAL_H_ */
+
+
+void enviar (uint8_t c);
+void SysTick_Handler(void);
+void config_UART3(void);
+
+
+
