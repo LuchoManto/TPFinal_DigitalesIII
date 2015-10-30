@@ -23,25 +23,25 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: TPFinal_DigitalesIII.axf
+all: TP_Final.axf
 
 # Tool invocations
-TPFinal_DigitalesIII.axf: $(OBJS) $(USER_OBJS)
+TP_Final.axf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU Linker'
-	arm-none-eabi-gcc -nostdlib -L"E:\LPCXpresso_7.9.0_455\workspace\CMSISv2p00_LPC17xx\Debug" -Xlinker -Map="TPFinal_DigitalesIII.map" -Xlinker --gc-sections -mcpu=cortex-m3 -mthumb -T "TPFinal_DigitalesIII_Debug.ld" -o "TPFinal_DigitalesIII.axf" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-none-eabi-gcc -nostdlib -L"F:\LUCHO\Facu\Cuartoo\ElectronicaDigital\Workspace\CMSISv2p00_LPC17xx\Debug" -Xlinker -Map="TP_Final.map" -Xlinker --gc-sections -mcpu=cortex-m3 -mthumb -T "TP_Final_Debug.ld" -o "TP_Final.axf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 	$(MAKE) --no-print-directory post-build
 
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(C_DEPS)$(EXECUTABLES) TPFinal_DigitalesIII.axf
+	-$(RM) $(OBJS)$(C_DEPS)$(EXECUTABLES) TP_Final.axf
 	-@echo ' '
 
 post-build:
 	-@echo 'Performing post-build steps'
-	-arm-none-eabi-size "TPFinal_DigitalesIII.axf"; # arm-none-eabi-objcopy -v -O binary "TPFinal_DigitalesIII.axf" "TPFinal_DigitalesIII.bin" ; # checksum -p LPC1769 -d "TPFinal_DigitalesIII.bin";
+	-arm-none-eabi-size "TP_Final.axf"; # arm-none-eabi-objcopy -v -O binary "TP_Final.axf" "TP_Final.bin" ; # checksum -p LPC1769 -d "TP_Final.bin";
 	-@echo ' '
 
 .PHONY: all clean dependents

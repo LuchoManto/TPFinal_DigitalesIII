@@ -5,12 +5,7 @@
  *      Author: Luciano
  */
 
-#ifdef __USE_CMSIS
-#include "LPC17xx.h"
-#include "control_motor.h"
-#endif
-
-#include <cr_section_macros.h>
+#include "headers.h"
 
 void config_PWM(void)
 {
@@ -30,24 +25,14 @@ void config_PWM(void)
 	  LPC_PWM1->TCR = (1<<0)|(1<<3);    // counter enable, PWM enable
 }
 
-void arrancar_motor(int num)
+void arrancar_motor()
 {
-	/*
-	set_Pwm(2358+num);
-	delay();
-	set_Pwm(2620+num);
-	delay();
-	set_Pwm(2882+num);
-	delay();
-	set_Pwm(3275+num);
-	*/
-	set_Pwm(28750+num);
-	delay();
-	set_Pwm(30000+num);
-	delay();
-	set_Pwm(33500+num);
-	delay();
-	set_Pwm(40000+num);
+		set_Pwm(17500);
+		delay();
+		set_Pwm(22500);
+		delay();
+		set_Pwm(28500);
+
 }
 
 void set_Pwm(int num)

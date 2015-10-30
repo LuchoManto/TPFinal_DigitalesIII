@@ -11,6 +11,7 @@
 #ifdef __USE_CMSIS
 #include "LPC17xx.h"
 #include "control_motor.h"
+#include "control_velocidad.h"
 #endif
 
 #include <cr_section_macros.h>
@@ -44,7 +45,7 @@ int main(void) {
 	}
 	*/
 
-	arrancar_motor(0);
+	arrancar_motor();
 
 
 
